@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListViewScheduleTest.Views.ListsView">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Groups}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Name}" TextColor="Red" />
+                                    <Label Grid.Column="1" Text="{Binding Description}" />
+                                </Grid>
+                                <StackLayout HorizontalOptions="Center">
+                                    <FlexLayout BindableLayout.ItemsSource="{Binding Items}" Wrap="Wrap" JustifyContent="SpaceEvenly" AlignItems="Center">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Text="{Binding Text}">
+                                                    <Button.BackgroundColor>
+                                                        <OnPlatform x:TypeArguments="Color">
+                                                            <On Platform="iOS" Value="#D3D3D3"/>
+                                                        </OnPlatform>
+                                                    </Button.BackgroundColor>
+                                                    <Button.Margin>
+                                                        <OnPlatform x:TypeArguments="Thickness">
+                                                            <On Platform="iOS" Value="5,5,5,5"/>
+                                                        </OnPlatform>
+                                                    </Button.Margin>
+                                                    <Button.Padding>
+                                                        <OnPlatform x:TypeArguments="Thickness">
+                                                            <On Platform="iOS" Value="16,16,16,16"/>
+                                                        </OnPlatform>
+                                                    </Button.Padding>
+                                                </Button>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Entry Text="{Binding Counter}" />
+            <Button Text="Refresh list" Command="{Binding ShowStudents}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
